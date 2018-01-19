@@ -1,0 +1,42 @@
+
+<div ng-show="showNav" >
+
+
+	<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-4dp" flex-xs="flex">
+	<md-list >
+	<md-list-item ng-show="user.role=='admin'"> 
+	
+	<md-button  ng-click="adminDashboard();toggleList()" aria-label="AdminPanel" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/dashboard.svg"><span flex-offset="15">Admin Dashboard</span>
+	</md-button> </md-list-item>
+	
+	<md-list-item> 
+	<md-button  ng-click="home();toggleList()" aria-label="Notes" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/notes.svg"> <span flex-offset="15">Notes</span>
+	</md-button> </md-list-item>
+	 
+	  <md-list-item> 
+	<md-button ng-click="reminderPage();toggleList()"
+		aria-label="Reminder" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/remind.svg"></md-icon> <span flex-offset="15">Reminder</span>
+	</md-button> </md-list-item> </md-list> <md-divider></md-divider> 
+	
+	
+	<md-list>
+	
+	 <md-list-item layout="row" layout-align="space-around center">
+	<span flex>Label
+		</span> <md-button ng-click="toggleList();showLabelDialog()" >Edit</md-button></md-list-item>
+		
+	<md-list-item ng-repeat="label in readLabel" >
+	<md-button ng-click="toggleList();getNoteByLabel(label.labelName);showLabels()" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/label_black.svg"></md-icon> <span flex-offset="10">{{label.labelName}}</span> </md-button> </md-list-item>	
+		 
+	<md-list-item><md-button ng-click="toggleList();showLabelDialog()" aria-label="" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/add.svg"></md-icon> <span flex-offset="10">Create
+		new label</span> </md-button> </md-list-item>
+		
+		
+		
+		 </md-list> <md-divider></md-divider> <md-list> <md-list-item>
+	<md-button ng-click="archivedNotes();toggleList()" aria-label="Archive" flex layout="row" layout-align="start center">
+	<img flex-offset="15" ng-src="img/icons/archive.svg"></md-icon> <span flex-offset="15">Archive</span> </md-button> </md-list-item> <md-list-item>
+	<md-button ng-click="trashNotes();toggleList()" aria-label="Trash" flex layout="row" layout-align="start center">
+	<img flex-offset="15" ng-src="img/icons/delete.svg"></md-icon> <span flex-offset="15">Trash</span> </md-button> </md-list-item> </md-list> </md-sidenav>
+
+</div>

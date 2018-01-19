@@ -1,0 +1,98 @@
+
+<nav-bar></nav-bar>
+
+<div layout="row" layout-align="center">
+
+	<div ng-show="showNav">
+
+		<md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
+			md-component-id="left" class="md-whiteframe-4dp" flex-xs="flex">
+		<md-list> <md-list-item ng-show="user.role=='admin'">
+
+		<md-list-item> 
+	<md-button  ng-click="home();toggleList()" aria-label="Notes" flex layout="row" layout-align="start center"> <img flex-offset="15" ng-src="img/icons/notes.svg"> <span flex-offset="15">Notes</span>
+	</md-button> </md-list-item>
+	</div>
+
+
+
+	<div flex="75" class="container" layout="column" layout-xs="column">
+
+		<div flex-offset="5" layout-padding>
+			<h4>Overallview</h4>
+		</div>
+
+		<div layout="row" layout-align="center center" layout-wrap
+			layout-padding layout-xs="column">
+			<div flex-gt-xs="30" flex-xs="flex">
+
+				<md-card layout-padding style="background-color:#CCFF90">
+
+
+				<div layout-padding ng-init="count()" layout="row" layout-align="start center">
+					<span><b>Total Notes:</b></span>
+					<span><b>{{counts}}</b></span>
+				</div>
+
+				</md-card>
+			</div>
+		</div>
+
+
+
+
+		<div flex-offset="5" layout-padding>
+			<h4>Users</h4>
+		</div>
+
+		<div layout="row" layout-align="start start" layout-wrap
+			layout-padding layout-xs="column">
+			<div ng-repeat="user in users" flex-gt-xs="30" flex-xs="flex">
+
+				<md-card layout-padding ng-mouseenter="visible=''"
+					ng-mouseleave="visible='hidden'" style="background-color:#FFD180">
+
+
+
+
+
+				<div ng-show="user.profilePicture" layout="row"
+					layout-align="start center" layout-padding>
+					<img ng-src={{user.profilePicture}}
+						style="border-radius: 45px; max-width: 100%;" aria-label="profile">
+					<div layout="column">
+						<span><b>{{user.userName}}</b></span> <span> {{user.email}}</span>
+					</div>
+				</div>
+
+
+
+
+
+				<div layout="row" layout-align="space-around center"
+					ng-hide="user.profilePicture">
+					<ng-avatar string="{{user.userName}}" bind="true" upper-case="true"
+						auto-color="true" class="avatar" round-shape="true"></ng-avatar>
+					<div layout="column">
+						<span><i>Name</i>: <b>{{user.userName}}</b></span> <span>
+							{{user.email}}</span>
+					</div>
+				</div>
+
+				<div layout="row" layout-align="start center">
+					<md-button class="md-raised md-warn" ng-click="noteCount(user)">&nbsp Notes count
+					&nbsp</md-button>
+					<span layout-padding><b>{{user.count}}</b></span>
+				</div>
+
+
+
+
+				</md-card>
+			</div>
+		</div>
+
+
+
+	</div>
+</div>
