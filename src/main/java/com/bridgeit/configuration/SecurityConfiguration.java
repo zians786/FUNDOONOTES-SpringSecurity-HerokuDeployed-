@@ -1,15 +1,11 @@
 package com.bridgeit.configuration;
 
-import java.util.ArrayList;
 
-import java.util.Arrays;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +19,7 @@ import com.bridgeit.security.JwtAuthenticationEntryPoint;
 import com.bridgeit.security.JwtAuthenticationProvider;
 import com.bridgeit.security.JwtAuthenticationSuccessHandler;
 import com.bridgeit.security.JwtAuthenticationTokenFilter;
+import com.bridgeit.service.UserDetailService;
 
 
 
@@ -39,9 +36,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	    @Autowired
 	    private JwtAuthenticationProvider authenticationProvider;
 	    
-	   
-
-	   
+	    @Autowired
+	    private UserDetailService userDetailService;
+	 
+	    
+	    @Override
+	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	    	auth.authenticationProvider(authenticationProvider);
+	    //	auth.userDetailsService(userDetailService);
+	      //  auth.userDetailsService(userDetailsService);
+	           }
+	   /*
 	    @Override
 	    public AuthenticationManager authenticationManager() throws Exception {
 	    	List list=new ArrayList();
@@ -49,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	        return new ProviderManager(list);
 
 	    }
-
+*/
 	    @Bean
 	    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
 	        JwtAuthenticationTokenFilter authenticationTokenFilter = new JwtAuthenticationTokenFilter();
@@ -68,6 +73,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	               .authorizeRequests()
 	               .antMatchers("/admin/**").hasAuthority("admin")
 	               .anyRequest().authenticated()
+	                .and()
+	                .formLogin()
 	                .and()
 	                // Call our errorHandler if authentication/authorisation fails
 	                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)

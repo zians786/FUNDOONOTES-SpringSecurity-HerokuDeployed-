@@ -52,7 +52,7 @@
 				<md-card layout-padding ng-mouseenter="visible=''"
 					ng-mouseleave="visible='hidden'" style="background-color:#FFD180">
 
-
+		<md-card-content>
 
 
 
@@ -61,7 +61,8 @@
 					<img ng-src={{user.profilePicture}}
 						style="border-radius: 45px; max-width: 100%;" aria-label="profile">
 					<div layout="column">
-						<span><b>{{user.userName}}</b></span> <span> {{user.email}}</span>
+						<span style="overflow-wrap: break-word;"><b>{{user.userName}}</b></span> <div style="overflow-wrap: break-word;" contenteditable="false"
+						aria-multiline="true" role="textbox">{{user.email}}</div>
 					</div>
 				</div>
 
@@ -74,7 +75,7 @@
 					<ng-avatar string="{{user.userName}}" bind="true" upper-case="true"
 						auto-color="true" class="avatar" round-shape="true"></ng-avatar>
 					<div layout="column">
-						<span><i>Name</i>: <b>{{user.userName}}</b></span> <span>
+						<span style="overflow-wrap: break-word;"><b>{{user.userName}}</b></span> <span style="overflow-wrap: break-word;">
 							{{user.email}}</span>
 					</div>
 				</div>
@@ -86,7 +87,7 @@
 				</div>
 
 
-
+</md-card-content>
 
 				</md-card>
 			</div>
