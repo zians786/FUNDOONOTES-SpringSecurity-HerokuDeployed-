@@ -54,7 +54,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "user/login" }, method = RequestMethod.POST)
 	public ResponseEntity<UserResponse> login(@RequestBody User user) {
 		UserResponse response = new UserResponse();
 		String token = service.loginValidate(user);

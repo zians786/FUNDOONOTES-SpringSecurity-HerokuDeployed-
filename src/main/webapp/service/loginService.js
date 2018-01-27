@@ -8,8 +8,8 @@ ToDo.factory('loginService',function($http,$location){
 	
 		return $http({
 			method :"POST",
-			url :'login',
-			data : user
+			url :'user/login',
+			data : user,
 		});
 	}
 	

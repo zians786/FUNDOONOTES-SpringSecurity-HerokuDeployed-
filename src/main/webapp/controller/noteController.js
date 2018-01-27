@@ -233,6 +233,7 @@ todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,l
 			  });
 			}
 	
+	
     $scope.showLabelDialog=function(){
     	$mdDialog.show({
     		contentElement: '#myLabelDialog',
@@ -387,6 +388,12 @@ todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,l
 		$location.path('search');
 	}
 	    
+	$scope.reminderPage=function(){
+		$location.path('reminder');
+	}
+	
+	
+	
 	// for getting all archived notes
 	    $scope.archivedNotes=function(){
 	    	$location.path('archive');
@@ -616,6 +623,7 @@ todo.controller('noteController',function($mdSidenav,toastr,$scope,noteService,l
 		$scope.shareNote=function(email,noteId){
 			var shareResp=noteService.shareNote(email,noteId);
 			shareResp.then(function(response){
+				
 				$scope.sharedNote=response.data;
 				getNotes();
 				console.log(response.data);

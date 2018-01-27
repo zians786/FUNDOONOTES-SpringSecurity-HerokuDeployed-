@@ -129,9 +129,11 @@ ToDo.factory('noteService',function($http,$location){
 	}
 	
 	userNote.shareNote=function(email,noteId){
+		console.log(email);
+		console.log(noteId);
 		return $http({
 			method:"POST",
-			url:"notes/share/email/"+email+"/note/"+noteId,
+			url:"notes/share/email/"+email+'/note/'+noteId,
 			headers: {'accToken': localStorage.getItem('token')
 			}
 		});

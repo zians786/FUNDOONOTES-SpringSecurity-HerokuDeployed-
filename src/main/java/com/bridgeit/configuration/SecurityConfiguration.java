@@ -43,8 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	    @Override
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	    	auth.authenticationProvider(authenticationProvider);
-	    //	auth.userDetailsService(userDetailService);
-	      //  auth.userDetailsService(userDetailsService);
+	    	
 	           }
 	   /*
 	    @Override
@@ -74,8 +73,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	               .antMatchers("/admin/**").hasAuthority("admin")
 	               .anyRequest().authenticated()
 	                .and()
-	                .formLogin()
+	                .formLogin().permitAll()
 	                .and()
+	          
 	                // Call our errorHandler if authentication/authorisation fails
 	                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
 	                .and()
@@ -91,7 +91,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	    @Override
 	    public void configure(WebSecurity web) throws Exception {
-	        web.ignoring().antMatchers("/login","**/webapp/**","/controller/**","/css/**","/directive/**","/script/**","/service/**","/template/**","/img/**","/bower_components/**","/index.jsp/**","/user/**","/social/**", "/resources/**");
+	        web.ignoring().antMatchers("**/webapp/**","/controller/**","/css/**","/directive/**","/script/**","/service/**","/template/**","/img/**","/bower_components/**","/index.jsp/**","/user/**","/social/**", "/resources/**");
 	    }
 
 	

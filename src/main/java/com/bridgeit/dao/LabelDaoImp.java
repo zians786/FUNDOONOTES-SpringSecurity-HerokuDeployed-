@@ -65,9 +65,10 @@ public class LabelDaoImp implements LabelDao {
 
 	@Override
 	public int getUserIdByLabelId(int labelId) {
-		Query query=getSession().createQuery("select userId from Label where labelId='"+labelId+"'");
-		int userId=(int) query.uniqueResult();
-		return userId;
+		Query query=getSession().createQuery("from Label where labelId='"+labelId+"'");
+		Label label=(Label) query.uniqueResult();
+		User user=label.getUser();
+		return user.getUserId();
 	}
 
 }
